@@ -42,12 +42,14 @@ void pcaps_page_build_menu(App* app, uint32_t keep_item_id) {
     submenu_add_item(app->pcap_menu, "< Back", 0, pcap_menu_callback, app);
 
     if(!ui_dir_exists(app->storage, PCAP_DIR)) {
+        if(keep_item_id < 10) keep_item_id = 10;
         submenu_add_item(app->pcap_menu, "(folder missing)", 1, pcap_menu_callback, app);
         submenu_set_selected_item(app->pcap_menu, keep_item_id);
         return;
     }
 
     if(app->pcaps.file_count == 0) {
+        if(keep_item_id < 10) keep_item_id = 10;
         submenu_add_item(app->pcap_menu, "(no pcaps found)", 1, pcap_menu_callback, app);
         submenu_set_selected_item(app->pcap_menu, keep_item_id);
         return;
@@ -59,6 +61,7 @@ void pcaps_page_build_menu(App* app, uint32_t keep_item_id) {
         submenu_add_item(app->pcap_menu, app->pcaps.labels[i], i + 10, pcap_menu_callback, app);
     }
 
+    if(keep_item_id < 10) keep_item_id = 10;
     submenu_set_selected_item(app->pcap_menu, keep_item_id);
 }
 

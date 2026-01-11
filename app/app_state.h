@@ -27,7 +27,10 @@ struct App {
     DialogEx* info_dialog;
 
     TextInput* text_input;
-    char input_buf[CONFIG_SERVER_MAX + 1];
+    // Big enough for SSID/PASS/SERVER regardless of their max sizes
+    #define APP_INPUT_BUF_LEN 128
+    char input_buf[APP_INPUT_BUF_LEN];
+
 
     Storage* storage;
 

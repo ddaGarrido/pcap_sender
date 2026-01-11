@@ -132,17 +132,16 @@ static bool send_view_input_callback(InputEvent* event, void* context) {
 
     if(event->key == InputKeyUp) {
         if(app->send_page.send_scroll > 0) app->send_page.send_scroll--;
-        view_dispatcher_send_custom_event(app->view_dispatcher, 1);
+        view_dispatcher_switch_to_view(app->view_dispatcher, ViewSend);
         return true;
     }
 
     if(event->key == InputKeyDown) {
-        // allow scrolling until last line is visible
         uint16_t max_scroll = (app->send_page.send_line_count > SEND_LINES_VISIBLE) ?
             (app->send_page.send_line_count - SEND_LINES_VISIBLE) : 0;
-
+    
         if(app->send_page.send_scroll < max_scroll) app->send_page.send_scroll++;
-        view_dispatcher_send_custom_event(app->view_dispatcher, 1);
+        view_dispatcher_switch_to_view(app->view_dispatcher, ViewSend);
         return true;
     }
 

@@ -13,13 +13,13 @@
 #include "../ui/ui_strings.h"
 #include "../ui/ui_helpers.h"
 
-static bool app_custom_event_callback(void* context, uint32_t event) {
-    UNUSED(context);
-    UNUSED(event);
-    // Custom event 1 is used for send page scroll updates
-    // The view will automatically redraw when it receives input events
-    return true;
-}
+// static bool app_custom_event_callback(void* context, uint32_t event) {
+//     UNUSED(context);
+//     UNUSED(event);
+//     // Custom event 1 is used for send page scroll updates
+//     // The view will automatically redraw when it receives input events
+//     return true;
+// }
 
 App* app_alloc(void) {
     App* app = malloc(sizeof(App));
@@ -46,7 +46,7 @@ App* app_alloc(void) {
     // Setup GUI/dispatcher
     Gui* gui = furi_record_open(RECORD_GUI);
     view_dispatcher_attach_to_gui(app->view_dispatcher, gui, ViewDispatcherTypeFullscreen);
-    view_dispatcher_set_custom_event_callback(app->view_dispatcher, app_custom_event_callback);
+    // view_dispatcher_set_custom_event_callback(app->view_dispatcher, app_custom_event_callback);
 
     // Register views
     home_page_init(app->home_menu, app);
