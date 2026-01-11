@@ -1,0 +1,12 @@
+App(
+    appid="pcap_sender",
+    name="PCAP Sender (Mock)",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="pcap_sender_app",
+    requires=[
+        "gui",
+        "storage",
+    ],
+    stack_size=3072,
+    icon="A_Usb_14",
+)
